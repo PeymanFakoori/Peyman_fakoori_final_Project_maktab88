@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <form action="/user/signup" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" id="firstName" placeholder="min 3 /max 30">
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" id="lastName" placeholder="min 3 / max 30">
+        <br>
+        <label for="username">Username :</label>
+        <input type="text" name="username" id="username">
+        <br>
+        <label for="password">Password :</label>
+        <input type="password" name="password" id="password" placeholder="8 / aA-Zz / 0-9">
+        <br>
+        <label for="repeatPassword">Repeat Password :</label>
+        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="Repeat Password">
+        <br>
+        <label for="gender">Gender</label>
+        <input type="text" name="gender" id="gender" placeholder="male / female">
+        <br>
+        <label for="role">Role :</label>
+        <input type="text" name="role" id="role" placeholder="user / admin">
+        <br>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+
+
+</body>
+
+</html>
