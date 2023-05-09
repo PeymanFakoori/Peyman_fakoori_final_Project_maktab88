@@ -66,7 +66,7 @@ const userValidator = async (req, res, next) => {
 
   if (!req.body.phone.match(/^(\+98|0)?9\d{9}$/))
     return res.render("signUp", {
-      msg: "phone is start with 0 or +98 & from iran",
+      msg: "phone Number format is wrong",
     });
 
   const checkPhone = await user.findOne({
@@ -74,7 +74,7 @@ const userValidator = async (req, res, next) => {
   });
   if (checkPhone)
     return res.render("signUp", {
-      msg: " phone Number is taken!",
+      msg: " phone Number was taken!",
     });
 
   // role

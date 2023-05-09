@@ -91,6 +91,63 @@ const profilePage = (req, res, _next) => {
   });
 };
 
+const uploadAvatar = (req, res, next) => {
+  const uploadUserAvatar = userAvatarUpload.single("avatar");
+
+  uploadUserAvatar(req, res, async (err) => {
+    if (err) {
+      //delete if save with error
+      // if (req.file) await fs.unlink(path.join(__dirname, "../public", req.file.filename))
+      if (err.message) return res.status(400).send(err.message);
+      return res.status(500).send("server error!");
+    }
+
+    if (!req.file) return res.status(400).send("File not send!");
+
+    try {
+      // delete old avatar
+      if (req.session.user.avatar)
+        await fs.unlink(
+          path.join(__dirname, "../public", req.session.user.avatar)
+        );
+
+      const user = await User.findByIdAndUpdate(
+        req.session.user._id,
+        {
+          avatar: "/images/userAvatars/" + req.file.filename,
+        },
+        { new: true }
+      );
+
+      req.session.user.avatar = user.avatar;
+
+      // return res.json(user);
+      res.redirect("/user/dashboard");
+    } catch (err) {
+      return next(createError(500, "Server Error!"));
+    }
+  });
+};
+
+const bulkUpload = (req, res, _next) => {
+  const uploadUserAvatar = userAvatarUpload.array("gallery");
+
+  uploadUserAvatar(req, res, async (err) => {
+    if (err) {
+      if (err.message) return res.status(400).send(err.message);
+      return res.status(500).send("server error!");
+    }
+
+    console.log(req.file);
+    console.log(req.files);
+
+    res.json({
+      file: req.file,
+      files: req.files,
+    });
+  });
+};
+
 const updateUser = (req, res, next) => {
   let updatedUser = {};
   const id = req.session.user._id;
@@ -157,63 +214,6 @@ const removeUser = (req, res, next) => {
       res.json(data);
     })
     .catch((err) => next(createError(500, err.message)));
-};
-
-const uploadAvatar = (req, res, next) => {
-  const uploadUserAvatar = userAvatarUpload.single("avatar");
-
-  uploadUserAvatar(req, res, async (err) => {
-    if (err) {
-      //delete if save with error
-      // if (req.file) await fs.unlink(path.join(__dirname, "../public", req.file.filename))
-      if (err.message) return res.status(400).send(err.message);
-      return res.status(500).send("server error!");
-    }
-
-    if (!req.file) return res.status(400).send("File not send!");
-
-    try {
-      // delete old avatar
-      if (req.session.user.avatar)
-        await fs.unlink(
-          path.join(__dirname, "../public", req.session.user.avatar)
-        );
-
-      const user = await User.findByIdAndUpdate(
-        req.session.user._id,
-        {
-          avatar: "/images/userAvatars/" + req.file.filename,
-        },
-        { new: true }
-      );
-
-      req.session.user.avatar = user.avatar;
-
-      // return res.json(user);
-      res.redirect("/user/dashboard");
-    } catch (err) {
-      return next(createError(500, "Server Error!"));
-    }
-  });
-};
-
-const bulkUpload = (req, res, next) => {
-  const uploadUserAvatar = userAvatarUpload.array("gallery");
-
-  uploadUserAvatar(req, res, async (err) => {
-    if (err) {
-      if (err.message) return res.status(400).send(err.message);
-      return res.status(500).send("server error!");
-    }
-
-    console.log(req.file);
-    console.log(req.files);
-
-    res.json({
-      file: req.file,
-      files: req.files,
-    });
-  });
 };
 
 module.exports = {
