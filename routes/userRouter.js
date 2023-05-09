@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const userValidator = require("../middlewares/userValidator");
-const User = require("../middlewares/User");
+const User = require("../middlewares/userValidator");
 
 const {
   signUpPage,
@@ -25,8 +25,8 @@ router.get("/profile", profilePage);
 
 router.get("/logout", logout);
 
-router.patch("/", updateUser);
+router.patch("/", userValidator, updateUser);
 
-router.delete("/", deleteUser);
+router.delete("/", removeUser);
 
 module.exports = router;
