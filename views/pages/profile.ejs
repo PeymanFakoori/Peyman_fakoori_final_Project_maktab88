@@ -10,6 +10,21 @@
 
 <body>
     <p>Hello <%= user.username %>!</p>
+    <p>
+        <%= user.fistName %>
+    </p>
+    <p>
+        <%= user.lastName %>
+    </p>
+    <p>
+        <%= user.username %>
+    </p>
+    <p>
+        <%= user.password %>
+    </p>
+    <p>
+        <%= user.role %>
+    </p>
 
 
 
@@ -17,6 +32,12 @@
     <br>
 
     <form action="/user/logout" method="get">
+        <input type="submit" value="Logout">
+    </form>
+    <form action="/user/logout" method="get">
+        <input type="submit" value="Logout">
+    </form>
+    <form action="/user/remove" method="get">
         <input type="submit" value="Logout">
     </form>
 

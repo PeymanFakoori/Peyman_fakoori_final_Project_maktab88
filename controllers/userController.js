@@ -4,6 +4,7 @@ const fs = require("fs/promises");
 const path = require("path");
 const User = require("../models/User");
 const { userAvatarUpload } = require("../utils/multer-settings");
+const { log } = require("console");
 
 const signUpPage = (req, res, _next) => {
   if (req.session.user) return res.redirect("/user/profile");
@@ -13,31 +14,24 @@ const signUpPage = (req, res, _next) => {
   });
 };
 
-const registration = async (req, res, _next) => {
+const registration = async (req, res, next) => {
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     username: req.body.username,
     password: req.body.password,
     phone: req.body.phone,
-    role: req.body.role,
     gender: req.body.gender,
-    avatar: req.body.avatar,
+    role: req.body.role,
   });
   try {
     await newUser.save();
 
     res.redirect("/user/login");
   } catch (err) {
-    res.render("pages/signUp", { errorMessage: "Server Error!" });
-    res.redirect(
-      url.format({
-        pathname: "/user/register",
-        query: {
-          errorMessage: "Server Error!",
-        },
-      })
-    );
+    console.log(err.message);
+    // res.render("pages/signUp", { errorMessage: "Server Error!" });
+    res.send("err");
   }
 };
 

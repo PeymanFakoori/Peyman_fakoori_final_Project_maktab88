@@ -5,7 +5,7 @@ const User = (req, res, next) => {
     if (!req.body.username)
       return next(createError(400, "please enter username"));
 
-    const checkUsername = user.exists({
+    const checkUsername = User.exists({
       username: req.body.username,
     });
 

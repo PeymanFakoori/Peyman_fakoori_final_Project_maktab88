@@ -20,7 +20,7 @@ router.get("/signup", signUpPage);
 router.post("/signup", userValidator, registration);
 
 router.get("/login", loginPage);
-router.post("/login", User, getLogin);
+router.post("/login", getLogin);
 
 router.get("/profile", profilePage);
 
@@ -30,7 +30,7 @@ router.post("/uploadAvatar", uploadAvatar);
 
 router.post("/bulkUpload", bulkUpload);
 
-router.patch("/", userValidator, updateUser);
+router.patch("/", updateUser);
 
 router.delete("/", removeUser);
 

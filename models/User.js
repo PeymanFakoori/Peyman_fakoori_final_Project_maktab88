@@ -44,17 +44,12 @@ const UserSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-      maxLength: 10,
-      minLength: 10,
     },
     role: {
       type: String,
       enum: ["blogger", "admin"],
       default: "blogger",
       lowercase: true,
-    },
-    avatar: {
-      type: String,
     },
   },
   {
