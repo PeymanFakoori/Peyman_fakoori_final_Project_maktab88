@@ -2,7 +2,7 @@ $(() => {
   $("#delete-user").on("submit", function (e) {
     e.preventDefault();
 
-    fetch(`/user/:username`, {
+    fetch(`/user/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

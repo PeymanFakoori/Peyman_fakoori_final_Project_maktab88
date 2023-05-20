@@ -21,6 +21,18 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-6 mb-4 mb-lg-0">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
+                                    <form class="g-3" action="/users/uploadAvatar" method="post"
+                                        enctype="multipart/form-data">
+                                        <br />
+                                        <label for="formFile" class="form-label">Upload Profile picture</label>
+                                        <div class="input-group">
+                                            <input type="file" name="avatar"
+                                                class="form-control btn btn-outline-warning" id="inputGroupFile04"
+                                                aria-describedby="inputGroupFileAddon04" aria-label="Upload" />
+                                            <input class="btn btn-info" type="submit" value="updateAvatar"
+                                                id="inputGroupFileAddon04" />
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="col-lg-6 px-xl-10">
                                     <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
@@ -70,6 +82,7 @@
         <button type="submit">Delete User</button>
     </form>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="/public/javascripts/main.js"></script>
 </body>

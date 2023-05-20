@@ -1,5 +1,4 @@
 const createError = require("http-errors");
-
 const user = require("../models/User");
 
 const userValidator = async (req, res, next) => {
@@ -78,11 +77,11 @@ const userValidator = async (req, res, next) => {
     });
 
   // role
-  if (!req.body.role) req.body.role = "user";
+  if (!req.body.role) req.body.role = "blogger";
 
-  if (!["admin", "user"].includes(req.body.role))
+  if (!["admin", "blogger"].includes(req.body.role))
     return next(
-      createError(400, "Your role is invalid. role must be admin or user")
+      createError(400, "Your role is invalid. role must be admin or blogger")
     );
 
   next();

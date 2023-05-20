@@ -14,7 +14,7 @@ const signUpPage = (req, res, _next) => {
   });
 };
 
-const registration = async (req, res, next) => {
+const registration = async (req, res, _next) => {
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -22,7 +22,6 @@ const registration = async (req, res, next) => {
     password: req.body.password,
     phone: req.body.phone,
     gender: req.body.gender,
-    role: req.body.role,
   });
   try {
     await newUser.save();
@@ -30,7 +29,6 @@ const registration = async (req, res, next) => {
     res.redirect("/user/login");
   } catch (err) {
     console.log(err.message);
-    // res.render("pages/signUp", { errorMessage: "Server Error!" });
     res.send("err");
   }
 };
@@ -55,14 +53,7 @@ const getLogin = async (req, res, _next) => {
     req.session.user = user;
     res.redirect("/user/profile");
   } catch (err) {
-    res.redirect(
-      url.format({
-        pathname: "/user/login",
-        query: {
-          errorMessage: "Server Error!",
-        },
-      })
-    );
+    res.redirect("/user/login");
   }
 };
 

@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      enum: ["male", "female"],
+      enum: ["male", "female", "not-set"],
       default: "not-set",
     },
     phone: {
@@ -50,6 +50,10 @@ const UserSchema = new mongoose.Schema(
       enum: ["blogger", "admin"],
       default: "blogger",
       lowercase: true,
+    },
+    avatar: {
+      type: String,
+      default: "user-default-avatar",
     },
   },
   {
@@ -74,7 +78,7 @@ UserSchema.methods.validatePassword = async function validatePassword(pass) {
   return bcrypt.compare(pass, this.password);
 };
 
-// async (req, res, next) => {
+// async ( next) => {
 //   try {
 //     const User = mongoose.model("user", UserSchema);
 //     const count = await User.countDocuments({});

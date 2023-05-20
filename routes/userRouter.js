@@ -30,7 +30,7 @@ router.post("/uploadAvatar", uploadAvatar);
 
 router.post("/bulkUpload", bulkUpload);
 
-router.patch("/", updateUser);
+router.patch("/:id", updateUser);
 
 router.delete("/", removeUser);
 
