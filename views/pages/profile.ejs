@@ -15,13 +15,13 @@
     <section class="bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="col-sm-12 mb-4 mb-sm-5">
                     <div class="card card-style1 border-0">
-                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                        <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-sm-7">
                             <div class="row align-items-center">
-                                <div class="col-lg-6 mb-4 mb-lg-0">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="...">
-                                    <form class="g-3" action="/users/uploadAvatar" method="post"
+                                <div class="col-sm-6 mb-4 mb-sm-0">
+                                    <img src="<%= user.avatar%>" alt="...">
+                                    <form class="g-3" action="/user/uploadAvatar" method="post"
                                         enctype="multipart/form-data">
                                         <br />
                                         <label for="formFile" class="form-label">Upload Profile picture</label>
@@ -34,8 +34,8 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-lg-6 px-xl-10">
-                                    <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
+                                <div class="col-sm-6 px-xl-10">
+                                    <div class="bg-secondary d-sm-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded">
                                         <h3 class="h2 text-white mb-0">it's <%= user.firstName %>'s profile </h3>
 
                                     </div>
@@ -64,23 +64,65 @@
                                     </ul>
 
                                 </div>
+                                <br>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-
+                <form action="/user/logout" method="get">
+                    <input type="submit" value="Logout" class="btn btn-warning ">
+                </form>
+                <br><br>
+                <form action="/user/delete" method="get">
+                    <input type="submit" value="delete-user" class="btn btn-danger">
+                </form>
             </div>
+            <br>
+            <br><br>
+            <h3>update profile</h3>
+            <form action="/user/update" method="post">
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3">First Name</label>
+                    <input type="text" class="form-control form-control-sm" name="firstName" placeholder="firstName" />
+                </div>
+                <!-- lastname input -->
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3">Sir Name</label>
+                    <input type="text" class="form-control form-control-sm" name="lastName" placeholder="lastName" />
+                </div>
+                <!-- username input -->
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3">USERNAME</label>
+                    <input type="text" class="form-control form-control-sm" name="username" placeholder="username" />
+                </div>
+
+                <!-- gender input -->
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3">Gender</label>
+                    <input type="text" class="form-control form-control-sm" name="gender" placeholder="gender" />
+                </div>
+
+
+                <!-- phone input -->
+                <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3">Phone Number</label>
+                    <input type="text" class="form-control form-control-sm" name="phone" placeholder="phone" />
+                </div>
+
+                <div class="text-center text-sm-start mt-4 pt-2">
+                    <button type="submit" class="btn btn-primary "
+                        style="padding-left: 2.5rem; padding-right: 2.5rem;">Signup</button>
+                </div>
+
+            </form>
+
+
         </div>
     </section>
 
-    <form action="/user/logout" method="get">
-        <input type="submit" value="Logout">
-    </form>
 
-    <form id="delete-user">
-        <button type="submit">Delete User</button>
-    </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

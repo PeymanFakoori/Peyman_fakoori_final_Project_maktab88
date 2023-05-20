@@ -13,7 +13,7 @@ const avaterStorage = multer.diskStorage({
 
 const userAvatarUpload = multer({
   storage: avaterStorage,
-  fileFilter: (_req, file, cb) => {
+  fileFilter: (req, file, cb) => {
     if (
       file.mimetype == "image/png" ||
       file.mimetype == "image/jpg" ||
@@ -31,7 +31,7 @@ const userAvatarUpload = multer({
 });
 
 const galleryStorage = multer.diskStorage({
-  destination: function (_req, _file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "public/images/userGallery");
   },
   filename: function (req, file, cb) {
@@ -43,7 +43,7 @@ const galleryStorage = multer.diskStorage({
 
 const galleryUpload = multer({
   storage: galleryStorage,
-  fileFilter: (_req, file, cb) => {
+  fileFilter: (req, file, cb) => {
     if (
       file.mimetype == "image/png" ||
       file.mimetype == "image/jpg" ||

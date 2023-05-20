@@ -1,10 +1,8 @@
 const createError = require("http-errors");
-const url = require("url");
 const fs = require("fs/promises");
 const path = require("path");
 const User = require("../models/User");
 const { userAvatarUpload } = require("../utils/multer-settings");
-const { log } = require("console");
 
 const signUpPage = (req, res, _next) => {
   if (req.session.user) return res.redirect("/user/profile");
@@ -107,7 +105,7 @@ const uploadAvatar = (req, res, next) => {
       req.session.user.avatar = user.avatar;
 
       // return res.json(user);
-      res.redirect("/user/dashboard");
+      res.redirect("/user/profile");
     } catch (err) {
       return next(createError(500, "Server Error!"));
     }
@@ -172,16 +170,17 @@ const updateUser = (req, res, next) => {
         gender,
         role,
       });
-      res.json({
-        firstName,
-        lastName,
-        username,
-        password,
-        phone,
-        avatar,
-        gender,
-        role,
-      });
+      // res.json({
+      //   firstName,
+      //   lastName,
+      //   username,
+      //   password,
+      //   phone,
+      //   avatar,
+      //   gender,
+      //   role,
+      // });
+      res.redirect("/user/profile");
     })
     .catch((err) => next(createError(500, err.message)));
 };
@@ -192,13 +191,14 @@ const logout = (req, res, _next) => {
   res.redirect("/user/login");
 };
 
-const removeUser = (req, res, next) => {
-  User.deleteOne({ username: req.session.user.username })
-    .then((data) => {
-      req.session.destroy();
-      res.json(data);
-    })
-    .catch((err) => next(createError(500, err.message)));
+const removeUser = async (req, res, next) => {
+  try {
+    const deletUser = await User.findByIdAndRemove(req.session.user._id);
+    req.session.destroy();
+    res.redirect("/user/signup");
+  } catch (error) {
+    return next(createError(500, error.message));
+  }
 };
 
 module.exports = {

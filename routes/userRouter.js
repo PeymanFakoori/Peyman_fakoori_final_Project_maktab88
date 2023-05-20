@@ -30,8 +30,8 @@ router.post("/uploadAvatar", uploadAvatar);
 
 router.post("/bulkUpload", bulkUpload);
 
-router.patch("/:id", updateUser);
+router.post("/update", updateUser);
 
-router.delete("/", removeUser);
+router.get("/delete", removeUser);
 
 module.exports = router;
