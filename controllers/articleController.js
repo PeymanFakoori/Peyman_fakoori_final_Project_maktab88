@@ -58,10 +58,32 @@ const removeArticle = async (req, res, next) => {
   }
 };
 
+const updateArticle = async (req, res, next) => {
+  try {
+    const updatedArticle = {};
+
+    if (!!req.body.title) updatedArticle.title = req.body.title;
+    if (!!req.body.description)
+      updatedArticle.description = req.body.description;
+    // if (!!req.body.thumbnail) updatedArticle.thumbnail = req.body.thumbnail;
+    if (!!req.body.content) updatedArticle.content = req.body.content;
+
+    const article = await Article.findByIdAndUpdate(
+      req.params.id,
+      updatedArticle,
+      { new: true }
+    );
+    return res.render("pages/article", { article: article });
+  } catch (error) {
+    return next(createError(500, "Server Error!"));
+  }
+};
+
 module.exports = {
   createArticle,
   articlePage,
   getBloggerArticles,
   readArticle,
   removeArticle,
+  updateArticle,
 };
