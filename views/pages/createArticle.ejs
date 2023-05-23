@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+</head>
+
+<body>
+    <form action="/article/create" method="post">
+        <div>
+            <label for="title">title</label>
+            <input type="text" name="title" placeholder="title" />
+        </div>
+        <div>
+            <label for="description"> description</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="content"> content</label>
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </div>
+
+        <div>
+            <label for="thumbnail">thumbnail</label>
+            <input type="file" name="thumbnail" placeholder="thumbnail" />
+        </div>
+
+        <div>
+            <button type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;">Save</button>
+        </div>
+
+    </form>
+</body>
+
+</html>

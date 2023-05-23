@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/post.css">
+    <title>Explore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    </script>
+</head>
+
+<body>
+    <div class="d-flex justify-content-start px-3 w-100 flex-wrap">
+        <% for(let article of JSON.parse(JSON.stringify(articles))){ %>
+
+            <div class="card col-4 m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <p class="card-title">
+                        <%= article.title %>
+                    </p>
+                    <img class="card-img-top mb-3 align-self-center" src=<%=article.thumbnail %>></img>
+                    <img alt="thumbnail">
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <p class="d-inline">discription: </p>
+                        <p class="d-inline text-primary">
+                            <%= article.description %>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="d-inline">created at: </p>
+                        <p class="d-inline text-primary">
+                            <%= article.createdAt %>
+                        </p>
+                    </li>
+                    <li>
+                        <form action="/article/<%= article._id %>" method="get">
+                            <input id="read-more" type="submit" value="read more">
+                        </form>
+                    </li>
+
+                </ul>
+
+            </div>
+            <% } %>
+
+    </div>
+    </div>
+</body>
+
+</html>

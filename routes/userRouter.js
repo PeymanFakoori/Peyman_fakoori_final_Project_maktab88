@@ -28,8 +28,6 @@ router.get("/logout", logout);
 
 router.post("/uploadAvatar", uploadAvatar);
 
-router.post("/bulkUpload", bulkUpload);
-
 router.post("/update", updateUser);
 
 router.get("/delete", removeUser);

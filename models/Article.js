@@ -21,9 +21,6 @@ const ArticleSchema = new mongoose.Schema(
       required: [true, "content is required"],
       minLength: [1, "content must be at least 1 characters"],
     },
-    contentImages: {
-      type: [String],
-    },
     author: {
       type: String,
       ref: "User",

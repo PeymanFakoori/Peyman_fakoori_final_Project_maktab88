@@ -76,7 +76,7 @@ const profilePage = (req, res, _next) => {
 
 const uploadAvatar = (req, res, next) => {
   const uploadUserAvatar = userAvatarUpload.single("avatar");
-
+  if (!req.session.user) return res.redirect("/user/login");
   uploadUserAvatar(req, res, async (err) => {
     if (err) {
       //delete if save with error
@@ -89,45 +89,28 @@ const uploadAvatar = (req, res, next) => {
 
     try {
       // delete old avatar
-      if (req.session.user.avatar)
+      if (req.session.user.avatar) {
+        // console.log(req.session.user);
         await fs.unlink(
           path.join(__dirname, "../public", req.session.user.avatar)
         );
+      }
 
-      const user = await User.findByIdAndUpdate(
+      const userss = await User.findByIdAndUpdate(
         req.session.user._id,
         {
           avatar: "/images/userAvatars/" + req.file.filename,
         },
         { new: true }
       );
-
-      req.session.user.avatar = user.avatar;
+      // console.log(req.session.user.avatar);
+      req.session.user.avatar = userss.avatar;
 
       // return res.json(user);
       res.redirect("/user/profile");
     } catch (err) {
       return next(createError(500, "Server Error!"));
     }
-  });
-};
-
-const bulkUpload = (req, res, _next) => {
-  const uploadUserAvatar = userAvatarUpload.array("gallery");
-
-  uploadUserAvatar(req, res, async (err) => {
-    if (err) {
-      if (err.message) return res.status(400).send(err.message);
-      return res.status(500).send("server error!");
-    }
-
-    console.log(req.file);
-    console.log(req.files);
-
-    res.json({
-      file: req.file,
-      files: req.files,
-    });
   });
 };
 
@@ -201,5 +184,4 @@ module.exports = {
   removeUser,
   updateUser,
   uploadAvatar,
-  bulkUpload,
 };
