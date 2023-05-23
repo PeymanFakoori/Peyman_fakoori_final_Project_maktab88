@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 
 const userRouter = require("./routes/userRouter");
+const articleRouter = require("./routes/articleRouter");
 
 const app = express();
 mongoose.connect("mongodb://127.0.0.1:27017/Final_Project").then(() => {
@@ -39,6 +40,7 @@ app.use((req, _res, next) => {
 });
 
 app.use("/user", userRouter);
+app.use("/article", articleRouter);
 
 // catch 404 and forward to error handler
 app.use(function (_req, _res, next) {

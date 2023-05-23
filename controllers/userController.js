@@ -170,16 +170,6 @@ const updateUser = (req, res, next) => {
         gender,
         role,
       });
-      // res.json({
-      //   firstName,
-      //   lastName,
-      //   username,
-      //   password,
-      //   phone,
-      //   avatar,
-      //   gender,
-      //   role,
-      // });
       res.redirect("/user/profile");
     })
     .catch((err) => next(createError(500, err.message)));

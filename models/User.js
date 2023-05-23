@@ -78,27 +78,4 @@ UserSchema.methods.validatePassword = async function validatePassword(pass) {
   return bcrypt.compare(pass, this.password);
 };
 
-// async ( next) => {
-//   try {
-//     const User = mongoose.model("user", UserSchema);
-//     const count = await User.countDocuments({});
-//     if (count === 0) {
-//       const admin = new User({
-//         firstName: "payman",
-//         lastName: "fakoori",
-//         username: "pfakoori",
-//         gender: "male",
-//         password: "admin113322",
-//         phoneNumber: "+989127267062",
-//         role: "admin",
-//       });
-//       await admin.save(admin);
-//     } else {
-//       console.log("Admin is already exists.");
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-
 module.exports = mongoose.model("user", UserSchema);
