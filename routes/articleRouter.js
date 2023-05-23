@@ -7,6 +7,7 @@ const {
   readArticle,
   removeArticle,
   updateArticle,
+  getAllArticles,
 } = require("../controllers/articleController");
 const { articleTumbnailUpload } = require("../utils/multer-settings");
 
@@ -17,6 +18,7 @@ router.post(
   createArticle
 );
 router.get("/myArticles", getBloggerArticles);
+router.get("/allArticle", getAllArticles);
 router.get("/:id", readArticle);
 router.get("/delete/:id", removeArticle);
 router.post("/update/:id", updateArticle);

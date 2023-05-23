@@ -79,6 +79,15 @@ const updateArticle = async (req, res, next) => {
   }
 };
 
+const getAllArticles = async (req, res, next) => {
+  try {
+    const articles = await Article.find({}, { __v: 0, updatedAt: 0 });
+    res.render("pages/allArticles", { articles: articles });
+  } catch (error) {
+    return next(createError(500, error.message));
+  }
+};
+
 module.exports = {
   createArticle,
   articlePage,
@@ -86,4 +95,5 @@ module.exports = {
   readArticle,
   removeArticle,
   updateArticle,
+  getAllArticles,
 };
