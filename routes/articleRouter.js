@@ -6,6 +6,6 @@ const {
 } = require("../controllers/articleController");
 
 router.get("/", articlePage);
-router.post("/", createArticle);
+router.post("/create", createArticle);
 
 module.exports = router;

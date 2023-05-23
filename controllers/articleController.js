@@ -15,10 +15,9 @@ const createArticle = async (req, res, next) => {
     newArticle.title = req.body.title;
     newArticle.thumbnail = req.body.thumbnail;
     newArticle.content = req.body.content;
-    newArticle.author = req.body.author;
-
-    if (!!req.body.description) newArticle.description;
-    if (!!req.body.contentImages) newArticle.contentImages;
+    newArticle.author = req.session.user.username;
+    newArticle.description = req.body.description;
+    newArticle.contentImages = req.body.contentImages;
 
     await newArticle.save();
     return res.json(newArticle).status(201);
