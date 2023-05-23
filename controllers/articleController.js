@@ -13,7 +13,7 @@ const createArticle = async (req, res, next) => {
     const newArticle = new Article({});
 
     newArticle.title = req.body.title;
-    newArticle.thumbnail = "/images/thumbnailPic" + req.file.filename;
+    newArticle.thumbnail = req.body.thumbnail;
     newArticle.content = req.body.content;
     newArticle.author = req.session.user.username;
     newArticle.description = req.body.description;
@@ -49,10 +49,19 @@ const readArticle = async (req, res, next) => {
     return next(createError(500, error.message));
   }
 };
+const removeArticle = async (req, res, next) => {
+  try {
+    const deletArticle = await Article.findByIdAndRemove(req.params.id);
+    res.send("done");
+  } catch (error) {
+    return next(createError(500, error.message));
+  }
+};
 
 module.exports = {
   createArticle,
   articlePage,
   getBloggerArticles,
   readArticle,
+  removeArticle,
 };

@@ -9,7 +9,20 @@
 </head>
 
 <body>
-    <p>iiiiiii</p>
+    <p> title : <%= article.title %>
+    </p>
+    <p>description :<%= article.title %>
+    </p>
+    <p>content : <%= article.content %>
+    </p>
+    <p>author : <%= article.author %>
+    </p>
+    <p>cteat at :<%= article.createdAt %>
+    </p>
+
+    <form action="/article/delete/<%= article._id %>" method="get">
+        <input type="submit" value="delete-article" class="btn btn-danger">
+    </form>
 </body>
 
 </html>
