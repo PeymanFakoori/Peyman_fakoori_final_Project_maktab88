@@ -23,6 +23,39 @@
     <form action="/article/delete/<%= article._id %>" method="get">
         <input type="submit" value="delete-article" class="btn btn-danger">
     </form>
+
+
+
+
+
+    <h2>update article</h2>
+
+    <body>
+        <form action="/article/update/<%= article._id %>" method="post">
+            <div>
+                <label for="title">title</label>
+                <input type="text" name="title" placeholder="title" />
+            </div>
+            <div>
+                <label for="description"> description</label>
+                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+                <label for="content"> content</label>
+                <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            </div>
+
+            <!-- <div>
+                <label for="thumbnail">thumbnail</label>
+                <input type="text" name="thumbnail" placeholder="thumbnail" />
+            </div> -->
+
+            <div>
+                <button type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;">Save</button>
+            </div>
+
+        </form>
+    </body>
 </body>
 
 </html>

@@ -35,8 +35,6 @@ const thumbnailStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     if (file.fieldname === "thumbnail") {
       cb(null, "public/images/thumbnailPic");
-    } else if (file.fieldname === "images") {
-      cb(null, "public/images/imageArticle");
     } else {
       cb(new Error("Invalid field name"));
     }
