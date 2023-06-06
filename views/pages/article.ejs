@@ -11,7 +11,7 @@
 <body>
     <p> title : <%= article.title %>
     </p>
-    <p>description :<%= article.title %>
+    <p>description :<%= article.description %>
     </p>
     <p>content : <%= article.content %>
     </p>
@@ -45,10 +45,15 @@
                 <textarea name="content" id="content" cols="30" rows="10"></textarea>
             </div>
 
-            <!-- <div>
+            <div>
                 <label for="thumbnail">thumbnail</label>
-                <input type="text" name="thumbnail" placeholder="thumbnail" />
-            </div> -->
+                <input type="file" name="thumbnail" placeholder="thumbnail" />
+            </div>
+
+            <div>
+                <label for="picture">picture</label>
+                <input type="file" name="picture" placeholder="picture" />
+            </div>
 
             <div>
                 <button type="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;">Save</button>

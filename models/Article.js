@@ -19,7 +19,10 @@ const ArticleSchema = new mongoose.Schema(
     content: {
       type: String,
       required: [true, "content is required"],
-      minLength: [1, "content must be at least 1 characters"],
+      minLength: [1, "content must be at least  characters"],
+    },
+    picture: {
+      type: [String],
     },
     author: {
       type: String,

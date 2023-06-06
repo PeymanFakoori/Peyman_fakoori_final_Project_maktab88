@@ -1,6 +1,5 @@
 const multer = require("multer");
 
-// avatarimages
 const avaterStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/images/userAvatars");
@@ -31,10 +30,13 @@ const userAvatarUpload = multer({
   },
 });
 
+// thumbnailImages
 const thumbnailStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     if (file.fieldname === "thumbnail") {
-      cb(null, "public/images/thumbnailPic");
+      cb(null, "public/images/thumbnail");
+    } else if (file.fieldname === "picture") {
+      cb(null, "public/images/picture");
     } else {
       cb(new Error("Invalid field name"));
     }
@@ -64,6 +66,7 @@ const articleTumbnailUpload = multer({
     fileSize: 1 * 1024 * 1024,
   },
 });
+
 module.exports = {
   userAvatarUpload,
   articleTumbnailUpload,
